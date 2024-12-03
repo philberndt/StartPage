@@ -5,51 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Start Page</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.min.css">
-    <style>
-      body {
-        padding-top: 56px;
-        background-color: #f8f9fa; /* VERY light background */
-      }
-      .welcome {
-        height: 80vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-      }
-      .search-box {
-        width: 100%; /* Make search box very wide */
-        max-width: 600px; /* Optional: limit maximum width */
-      }
-      #searchInput {
-        border-radius: 50px; /* Rounded edges */
-        background-color: #ffffff; /* White background */
-        padding-right: 50px; /* Space for icons */
-      }
-      .search-icons {
-        position: absolute;
-        right: 15px;
-        top: 50%;
-        transform: translateY(-50%);
-        display: flex;
-        gap: 10px;
-      }
-      .search-icon {
-        cursor: pointer;
-        color: #6c757d;
-      }
-      .search-icon.active {
-        color: #0d6efd;
-      }
-      .search-container {
-        position: relative;
-        width: 100%;
-      }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Noto+Serif:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
   </head>
   <body>
     <!-- Navbar -->
@@ -101,21 +60,18 @@
           <input
             type="text"
             id="searchInput"
-            class="form-control mb-2"
-            placeholder="Enter your search query"
+            placeholder="Search..."
+            autocomplete="off"
           />
           <div class="search-icons">
-            <i class="bi bi-house search-icon" data-engine="google"></i>
-            <i class="bi bi-info-circle search-icon" data-engine="alternativeto"></i>
-            <i class="bi bi-envelope search-icon" data-engine="chatgpt"></i>
+            <span class="material-icons search-icon active" data-engine="google">search</span>
+            <span class="material-icons search-icon" data-engine="alternativeto">apps</span>
+            <span class="material-icons search-icon" data-engine="chatgpt">chat</span>
           </div>
         </div>
-        <button class="btn btn-success mt-2" id="searchButton">Search</button>
       </div>
     </div>
 
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>
     <script>
       document
         .getElementById("actionButton")
@@ -133,18 +89,20 @@
         });
       });
 
-      document.getElementById('searchButton').addEventListener('click', function () {
-        const query = document.getElementById('searchInput').value;
-        let url = "";
-        if (selectedEngine === "google") {
-          url = `https://google.no/search?q=${encodeURIComponent(query)}`;
-        } else if (selectedEngine === "alternativeto") {
-          url = `https://alternativeto.net/browse/search/?q=${encodeURIComponent(query)}`;
-        } else if (selectedEngine === "chatgpt") {
-          url = `https://chatgpt.com/search?q=${encodeURIComponent(query)}`;
+      document.getElementById('searchInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            const query = this.value;
+            let url = "";
+            if (selectedEngine === "google") {
+                url = `https://google.no/search?q=${encodeURIComponent(query)}`;
+            } else if (selectedEngine === "alternativeto") {
+                url = `https://alternativeto.net/browse/search/?q=${encodeURIComponent(query)}`;
+            } else if (selectedEngine === "chatgpt") {
+                url = `https://chatgpt.com/search?q=${encodeURIComponent(query)}`;
+            }
+            window.open(url, "_blank");
         }
-        window.open(url, "_blank");
-      });
+    });
     </script>
   </body>
 </html>
