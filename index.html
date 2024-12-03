@@ -52,6 +52,15 @@
         <h1 class="display-4">Welcome to Your Start Page</h1>
         <p class="lead">Customize this page to get started.</p>
         <button class="btn btn-primary" id="actionButton"><i class="bi bi-rocket"></i> Get Started</button>
+        <div class="search-box mt-4">
+            <input type="text" id="searchInput" class="form-control mb-2" placeholder="Enter your search query">
+            <select id="searchEngine" class="form-select mb-2" aria-label="Select Search Engine">
+                <option value="google">Google</option>
+                <option value="alternativeto">AlternativeTo</option>
+                <option value="chatgpt">ChatGPT</option>
+            </select>
+            <button class="btn btn-success" id="searchButton">Search</button>
+        </div>
     </div>
 
     <!-- Bootstrap JS and dependencies -->
@@ -59,6 +68,19 @@
     <script>
         document.getElementById('actionButton').addEventListener('click', function() {
             alert('Welcome to your new start page!');
+        });
+        document.getElementById('searchButton').addEventListener('click', function() {
+            const query = document.getElementById('searchInput').value;
+            const engine = document.getElementById('searchEngine').value;
+            let url = '';
+            if (engine === 'google') {
+                url = `https://google.no/search?q=${encodeURIComponent(query)}`;
+            } else if (engine === 'alternativeto') {
+                url = `https://alternativeto.net/search/?q=${encodeURIComponent(query)}`;
+            } else if (engine === 'chatgpt') {
+                url = `https://chatgpt.com/search?q=${encodeURIComponent(query)}`;
+            }
+            window.open(url, '_blank');
         });
     </script>
 </body>
