@@ -1,110 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Start Page</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Noto+Serif:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Noto+Serif:wght@400;700&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
-  </head>
-  <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Start Page</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#"
-                ><i class="bi bi-house"></i> Home</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"
-                ><i class="bi bi-info-circle"></i> About</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"
-                ><i class="bi bi-envelope"></i> Contact</a
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-    <!-- Main Content -->
-    <div class="container welcome">
-      <h1 class="display-4">Welcome to Your Start Page</h1>
-      <p class="lead">Customize this page to get started 🚀</p>
-      <p class="emoji-test">Let's search something! 🔍 Try different engines: Google 🌐, AlternativeTo 🔄, or ChatGPT 🤖</p>
-      <button class="btn btn-primary" id="actionButton">
-        <i class="bi bi-rocket"></i> Get Started
-      </button>
-      <div class="search-box mt-4">
-        <div class="search-container">
-          <input
-            type="text"
-            id="searchInput"
-            placeholder="Search..."
-            autocomplete="off"
-          />
-          <div class="search-icons">
-            <span class="material-icons search-icon active" data-engine="google">search</span>
-            <span class="material-icons search-icon" data-engine="alternativeto">apps</span>
-            <span class="material-icons search-icon" data-engine="chatgpt">chat</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <script>
-      document
-        .getElementById("actionButton")
-        .addEventListener("click", function () {
-          alert("Welcome to your new start page!");
-        });
-      const searchIcons = document.querySelectorAll('.search-icon');
-      let selectedEngine = 'google';
-
-      searchIcons.forEach(icon => {
-        icon.addEventListener('click', () => {
-          searchIcons.forEach(i => i.classList.remove('active'));
-          icon.classList.add('active');
-          selectedEngine = icon.getAttribute('data-engine');
-        });
-      });
-
-      document.getElementById('searchInput').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            const query = this.value;
-            let url = "";
-            if (selectedEngine === "google") {
-                url = `https://google.no/search?q=${encodeURIComponent(query)}`;
-            } else if (selectedEngine === "alternativeto") {
-                url = `https://alternativeto.net/browse/search/?q=${encodeURIComponent(query)}`;
-            } else if (selectedEngine === "chatgpt") {
-                url = `https://chatgpt.com/search?q=${encodeURIComponent(query)}`;
-            }
-            window.open(url, "_blank");
-        }
-    });
-    </script>
-  </body>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="https://cdn.jsdelivr.net/npm/react/umd/react.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom/umd/react-dom.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/babel-standalone/babel.min.js"></script>
+    <script type="text/babel" src="App.js"></script>
+</body>
 </html>
