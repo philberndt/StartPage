@@ -1,4 +1,3 @@
-
 const SearchBox = () => {
   const [selectedEngine, setSelectedEngine] = React.useState('google');
   
@@ -44,6 +43,7 @@ const SearchBox = () => {
 const App = () => {
   return (
     <div className="container welcome">
+      <span className="material-symbols-outlined big-skull">skull</span>
       <h1 className="display-4">Welcome to Your Start Page</h1>
       <p className="lead">Customize this page to get started 🚀</p>
       <p className="emoji-test">

@@ -72,3 +72,10 @@ h1 {
     font-size: 1.1rem;
     color: #666;
 }
+
+.big-skull {
+    font-size: 15em;
+    color: #e9e9e9;
+    margin-bottom: 2rem;
+    text-align: center;
+}
